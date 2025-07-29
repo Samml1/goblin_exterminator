@@ -16,5 +16,5 @@ TO DO:
 
 Reference list:
 List of all sources I have taken inspiration from:
-https://gist.github.com/wynand1004/bf8b5965271687b89ab24410ce0f0fc4 - used to design exit system in room class
-https://www.youtube.com/CodeWithHuw - Used to get inspiration for how to create room class structure
+- https://gist.github.com/wynand1004/bf8b5965271687b89ab24410ce0f0fc4 - used to design exit system in room class
+- https://www.youtube.com/CodeWithHuw - Used to get inspiration for how to create room class structure
