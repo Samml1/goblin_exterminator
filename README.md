@@ -7,6 +7,7 @@ the lands exterminating goblins.
 
 TO DO:
 - create yml format to create dungeons programatically
+  - read yml format using pyYaml or other lib
 - segment and compartmentalise the codebase to prevent it from becoming too unweildy
 - create dungeons
 - create enemy class
