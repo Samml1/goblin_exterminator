@@ -1,5 +1,7 @@
 import random
 from classStructure import player, room
+from createDungeon import *
+from initialisePlayer import *
 
 # Create Dungeon entrance
 entrance = room('Dungeon Entrance', 'The Entrance to the dungeon')
@@ -8,17 +10,17 @@ entrance = room('Dungeon Entrance', 'The Entrance to the dungeon')
 user1 = player("TestPlayer", 'entrance')
 
 # create a new player object when called from the main loop
-def newPlayer():
-    global user1
+'''def newPlayer():
     userName = input("What is your name?\n")
 
     user1 = player(userName, 'entrance')
 
     print("Welcome to your Adventure, " + user1.name + "!")
 
-    return user1
+    return user1'''
 
-def createDungeon(dungeonName):
+# create a new dungeon instance as a list of room objects
+'''def createDungeon(dungeonName):
     global roomList
 
     if dungeonName == "goblin cave":
@@ -45,7 +47,7 @@ def createDungeon(dungeonName):
         dungeonName = input("No dungeon by that name found\nplease enter name again\n")
         createDungeon(dungeonName)
 
-    return roomList
+    return roomList'''
 
 def randomEncounter():
     # Create a chance of a random encounter occurring
@@ -65,7 +67,7 @@ def playerMove(playerAction):
     if playerAction in user1.location.exits:
         user1.location = user1.location.exits[playerAction]
         print("You go {} and find yourself in a ".format(playerAction) + user1.location.roomName)
-        print(user1.location.roomName)
+        print(user1.location.description)
         randomEncounter()
     else:
         print("Unable to move in that direction\n")
@@ -74,7 +76,7 @@ def dungeonExplore():
     global roomList
 
     dungeonName = input("Whch dungeon would you like to explore: \ngoblin cave \n").lower()
-    createDungeon(dungeonName)
+    roomList = createDungeon(dungeonName)
 
     user1.location = roomList[0]
     print("You stand at the entrance to the Dungeon")
@@ -104,19 +106,23 @@ def dungeonExplore():
         if playerAction.lower() == 'q':
             exit()
 
+#Main gameplay loop
 while True:
-    playerAction = input("What would you like to do?\n").lower()
 
     #Instantiate a new Game and create the player class
-    if playerAction == "new game":
-        newPlayer()
+    user1 = newPlayer()
+
+    #Get the player input and loop
+    playerAction = input("What would you like to do?\n").lower()
 
     #Instantiate a dungeon instance and let the player explore
     if playerAction == "enter dungeon":
         dungeonExplore()
 
+    #View the user stats - no stats exist currently
     if playerAction == "view stats":
         print(user1.name)
 
+    #quit the program softly
     if playerAction.lower() == 'q':
         exit()

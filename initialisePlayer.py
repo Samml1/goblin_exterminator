@@ -1,12 +1,11 @@
-from classesStructure import player
-global user1
+from classStructure import player
 
+# create a new player object when called from the main loop
 def newPlayer():
-    global user1
     userName = input("What is your name?\n")
 
     user1 = player(userName, 'entrance')
 
     print("Welcome to your Adventure, " + user1.name + "!")
 
-    return user1.name, user1.location
+    return user1

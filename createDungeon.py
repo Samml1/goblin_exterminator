@@ -1,8 +1,7 @@
 from classStructure import room
-global roomList
 
+# create a new dungeon instance as a list of room objects
 def createDungeon(dungeonName):
-    global roomList
 
     if dungeonName == "goblin cave":
         # Create the dungeon rooms
