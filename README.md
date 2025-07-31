@@ -11,7 +11,7 @@ TO DO:
 - segment and compartmentalise the codebase to prevent it from becoming too unweildy
 - create dungeons
 - create enemy class
-- update player class to have HP and stats
+- ~~ update player class to have HP and stats ~~
 
 
 Reference list:
