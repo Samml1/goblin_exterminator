@@ -1,53 +1,11 @@
 import random
-from classStructure import player, room
 from createDungeon import *
 from initialisePlayer import *
-
-# Create Dungeon entrance
-entrance = room('Dungeon Entrance', 'The Entrance to the dungeon')
+roomList = []
+startingItems = []
 
 # Create Test player instance if user does not run new game command
 user1 = player("TestPlayer", 'entrance')
-
-# create a new player object when called from the main loop
-'''def newPlayer():
-    userName = input("What is your name?\n")
-
-    user1 = player(userName, 'entrance')
-
-    print("Welcome to your Adventure, " + user1.name + "!")
-
-    return user1'''
-
-# create a new dungeon instance as a list of room objects
-'''def createDungeon(dungeonName):
-    global roomList
-
-    if dungeonName == "goblin cave":
-        # Create the dungeon rooms
-        entrance = room('Dungeon Entrance', 'The Entrance to the dungeon')
-        hallway = room('Dungeon hallway', 'A dark wet hallway that smells of mildew')
-        treasureRoom = room('Treasure Room', 'A room full of a horde of treasure')
-
-        # Create exits
-        entrance.exits["north"] = hallway
-        hallway.exits["south"] = entrance
-        hallway.exits["east"] = treasureRoom
-        treasureRoom.exits["west"] = hallway
-
-        # Create enemy rooms
-        entrance.enemyRoom = False
-        hallway.enemyRoom = False
-        treasureRoom.enemyRoom = True
-
-        roomList = [entrance, hallway, treasureRoom]
-    elif dungeonName == "q":
-        exit()
-    else:
-        dungeonName = input("No dungeon by that name found\nplease enter name again\n")
-        createDungeon(dungeonName)
-
-    return roomList'''
 
 def randomEncounter():
     # Create a chance of a random encounter occurring
@@ -73,10 +31,11 @@ def playerMove(playerAction):
         print("Unable to move in that direction\n")
 
 def dungeonExplore():
-    global roomList
 
     dungeonName = input("Whch dungeon would you like to explore: \ngoblin cave \n").lower()
     roomList = createDungeon(dungeonName)
+    '''dungeonName = dungeonName.replace(" ","_")
+    roomList = munchYaml(dungeonName)'''
 
     user1.location = roomList[0]
     print("You stand at the entrance to the Dungeon")
@@ -85,7 +44,7 @@ def dungeonExplore():
         playerAction = input("What would you like to do next\n").lower()
 
         # handle player movement
-        if playerAction in ["north","east","south","west"]:
+        if playerAction.lower() in ["north","east","south","west"]:
             playerMove(playerAction)
 
         if playerAction == "describe":
@@ -110,7 +69,10 @@ def dungeonExplore():
 while True:
 
     #Instantiate a new Game and create the player class
-    user1 = newPlayer()
+    if user1.name == 'TestPlayer':
+        user1 = newPlayer()
+        startingItems = giveStartingItems()
+        user1.inventory = startingItems
 
     #Get the player input and loop
     playerAction = input("What would you like to do?\n").lower()
@@ -119,9 +81,33 @@ while True:
     if playerAction == "enter dungeon":
         dungeonExplore()
 
-    #View the user stats - no stats exist currently
+    #View the user stats
     if playerAction == "view stats":
-        print(user1.name)
+        print("Player Name: " + user1.name)
+        print("HP: " + str(user1.playerHP))
+        print("Inventory:")
+        for i in range(0, len(user1.inventory)):
+            print("    " + user1.inventory[i].name + ": " + user1.inventory[i].description, user1.inventory[i].isWeapon)
+        if user1.holdingWeapon:
+            print("Equipped Weapon: " + user1.playerHeldWeapon.name, user1.playerHeldWeapon.description)
+        else:
+            print("Equipped Weapon: None")
+
+    if playerAction == "equip weapon":
+        weaponChange = False
+        weaponSelect = input("equip which weapon?\n").lower()
+        for i in range(0,len(user1.inventory)):
+            if weaponSelect == user1.inventory[i].name.lower():
+                weaponSelect = user1.inventory[i]
+                equipWeapon(weaponSelect, user1)
+                break
+
+
+    # instantiate new player instace upong new game selection
+    if playerAction == "new game":
+        user1 = newPlayer()
+        startingItems = giveStartingItems()
+        user1.inventory = startingItems
 
     #quit the program softly
     if playerAction.lower() == 'q':
