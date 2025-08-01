@@ -11,13 +11,11 @@ TO DO:
 - segment and compartmentalise the codebase to prevent it from becoming too unweildy
 - create dungeons
 - create enemy class
-- create combat function for random encounters
-  - this will require an XP system of some variety
-  - add more stats for the player and enemies
+- combat function for random encounters:
+  - create XP system
+  - create more stats for the player and enemies
   - create different weapons to use
-- create loot system
-  - give players a reason to fight
-  - 
+  - create loot system
 - ~~update player class to have HP and stats~~
 
 
