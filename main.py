@@ -26,6 +26,8 @@ def playerMove(playerAction):
         user1.location = user1.location.exits[playerAction]
         print("You go {} and find yourself in a ".format(playerAction) + user1.location.roomName)
         print(user1.location.description)
+        for key in (user1.location.exits.keys()):
+                print("There is an exit: " + key)
         randomEncounter()
     else:
         print("Unable to move in that direction\n")
