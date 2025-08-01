@@ -6,11 +6,18 @@ adventure game written in Python where the goal is to travel accross
 the lands exterminating goblins.
 
 TO DO:
-- create yml format to create dungeons programatically
-  - read yml format using pyYaml or other lib
+- ~~create yml format to create dungeons programatically~~
+  - ~~read yml format using pyYaml or other lib~~
 - segment and compartmentalise the codebase to prevent it from becoming too unweildy
 - create dungeons
 - create enemy class
+- create combat function for random encounters
+  - this will require an XP system of some variety
+  - add more stats for the player and enemies
+  - create different weapons to use
+- create loot system
+  - give players a reason to fight
+  - 
 - ~~update player class to have HP and stats~~
 
 
