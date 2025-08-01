@@ -5,9 +5,9 @@ def createDungeon(dungeonName):
 
     if dungeonName == "goblin cave":
         # Create the dungeon rooms
-        entrance = room('Dungeon Entrance', 'The Entrance to the dungeon')
-        hallway = room('Dungeon hallway', 'A dark wet hallway that smells of mildew')
-        treasureRoom = room('Treasure Room', 'A room full of a horde of treasure')
+        entrance = room('entrance','Dungeon Entrance', 'The Entrance to the dungeon')
+        hallway = room('hallway','Dungeon hallway', 'A dark wet hallway that smells of mildew')
+        treasureRoom = room('treasureRoom','Treasure Room', 'A room full of a horde of treasure')
 
         # Create exits
         entrance.exits["north"] = hallway
@@ -15,7 +15,7 @@ def createDungeon(dungeonName):
         hallway.exits["east"] = treasureRoom
         treasureRoom.exits["west"] = hallway
 
-        # Create enemy rooms
+        # Define enemy rooms
         entrance.enemyRoom = False
         hallway.enemyRoom = False
         treasureRoom.enemyRoom = True

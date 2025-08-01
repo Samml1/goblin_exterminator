@@ -1,0 +1,39 @@
+# Create the dungeon rooms
+---
+room: entrance
+roomName: 'Dungeon Entrance'
+description: 'The Entrance to the dungeon'
+enemyRoom: False
+exits:
+  - north: hallway
+---
+room: hallway
+roomName: 'dungeon hallway'
+description: 'A dark wet hallway that smells of mildew'
+enemyRoom: False
+exits:
+  - east: treasureRoom
+  - south: entrance
+  - west: hallway2
+---
+room: treasureRoom
+roomName: 'Treasure Room'
+description: 'A room full of a horde of treasure'
+enemyRoom: True
+exits:
+  - west: hallway
+---
+room: hallway2
+roomName: 'Another hallway'
+description: 'A hallway dripping with damp, the walls are moist with condensation'
+enemyRoom: False
+exits:
+  - east: hallway
+  - north: lair
+---
+room: lair
+roomName: 'Lair'
+description: 'A large cavernous room filled with evil'
+enemyRoom: True
+exits:
+  - south: hallway2

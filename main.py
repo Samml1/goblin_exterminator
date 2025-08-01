@@ -1,5 +1,5 @@
 import random
-from createDungeon import *
+from createDungeonYML import *
 from initialisePlayer import *
 roomList = []
 startingItems = []
@@ -33,13 +33,19 @@ def playerMove(playerAction):
 def dungeonExplore():
 
     dungeonName = input("Whch dungeon would you like to explore: \ngoblin cave \n").lower()
-    roomList = createDungeon(dungeonName)
-    '''dungeonName = dungeonName.replace(" ","_")
-    roomList = munchYaml(dungeonName)'''
 
+    # Deprecated method for creating dungeons
+    '''roomList = createDungeon(dungeonName)'''
+
+    # Current dungeon creation method
+    dungeonName = dungeonName.replace(" ","_")
+    roomList = munchYaml(dungeonName)
+
+    # Set user to position 0 in roomList - this should be dungeon entrance
     user1.location = roomList[0]
     print("You stand at the entrance to the Dungeon")
 
+    # Loop for player actions in dungeon
     while True:
         playerAction = input("What would you like to do next\n").lower()
 
