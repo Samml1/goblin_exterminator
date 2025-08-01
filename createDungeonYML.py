@@ -16,15 +16,12 @@ def yamlReader(fileName):
 # Have room exits point to room objects for player movement
 def createExits(roomlist):
     for i in range(0, len(roomList)):
-        print(roomList[i].name)
         for j in range(0,len(roomList)):
             if roomList[j].name in roomList[i].exits.values():
                 for x in roomList[i].exits:
                     if roomList[i].exits[x] == roomList[j].name:
                         roomList[i].exits[x] = roomList[j]
 
-    for y in range(0, len(roomList)):
-        print(roomList[y].name, roomList[y].exits)
 
 
 # Create the rooms for the dungeon
@@ -62,5 +59,4 @@ def munchYaml(fileName):
     defineDungeon(data)
     createExits(data)
 
-    print(roomList)
     return roomList

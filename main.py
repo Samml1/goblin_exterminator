@@ -17,7 +17,7 @@ def randomEncounter():
         elif 30 < encounterChance < 90:
             print("You find  goblin")
         else:
-            print("You encounter the king goblin")
+            print("You encounter   goblin king")
 
 
 def playerMove(playerAction):
