@@ -21,14 +21,3 @@ def giveStartingItems():
 
     startingItems = [sword, rope, linen]
     return startingItems
-
-def equipWeapon(selectedWeapon, user1):
-    if selectedWeapon.isWeapon:
-        user1.playerHeldWeapon = selectedWeapon
-        user1.holdingWeapon = True
-        user1.inventory.remove(selectedWeapon)
-        print("you have equiped: " + user1.playerHeldWeapon.name)
-    else:
-        print("That is not a weapon")
-
-    return user1
