@@ -1,6 +1,7 @@
 import random
 from createDungeonYML import *
 from initialisePlayer import *
+from playerActions import viewStats, swapWeapon, equipWeapon
 roomList = []
 startingItems = []
 
@@ -17,7 +18,7 @@ def randomEncounter():
         elif 30 < encounterChance < 90:
             print("You find  goblin")
         else:
-            print("You encounter   goblin king")
+            print("You encounter the king goblin")
 
 
 def playerMove(playerAction):
@@ -26,8 +27,6 @@ def playerMove(playerAction):
         user1.location = user1.location.exits[playerAction]
         print("You go {} and find yourself in a ".format(playerAction) + user1.location.roomName)
         print(user1.location.description)
-        for key in (user1.location.exits.keys()):
-                print("There is an exit: " + key)
         randomEncounter()
     else:
         print("Unable to move in that direction\n")
@@ -50,6 +49,9 @@ def dungeonExplore():
     # Loop for player actions in dungeon
     while True:
         playerAction = input("What would you like to do next\n").lower()
+
+        if playerAction == "view stats":
+            viewStats(user1)
 
         # handle player movement
         if playerAction.lower() in ["north","east","south","west"]:
@@ -91,24 +93,10 @@ while True:
 
     #View the user stats
     if playerAction == "view stats":
-        print("Player Name: " + user1.name)
-        print("HP: " + str(user1.playerHP))
-        print("Inventory:")
-        for i in range(0, len(user1.inventory)):
-            print("    " + user1.inventory[i].name + ": " + user1.inventory[i].description, user1.inventory[i].isWeapon)
-        if user1.holdingWeapon:
-            print("Equipped Weapon: " + user1.playerHeldWeapon.name, user1.playerHeldWeapon.description)
-        else:
-            print("Equipped Weapon: None")
+        viewStats(user1)
 
     if playerAction == "equip weapon":
-        weaponChange = False
-        weaponSelect = input("equip which weapon?\n").lower()
-        for i in range(0,len(user1.inventory)):
-            if weaponSelect == user1.inventory[i].name.lower():
-                weaponSelect = user1.inventory[i]
-                equipWeapon(weaponSelect, user1)
-                break
+        equipWeapon(user1)
 
 
     # instantiate new player instace upong new game selection

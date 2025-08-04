@@ -22,6 +22,8 @@ def createExits(roomlist):
                     if roomList[i].exits[x] == roomList[j].name:
                         roomList[i].exits[x] = roomList[j]
 
+    for y in range(0, len(roomList)):
+        print(roomList[y].name)
 
 
 # Create the rooms for the dungeon
@@ -50,8 +52,6 @@ def defineDungeon(data):
 
         #pass each yaml data entry to function
         createRoom(room, roomName, description, enemyRoom, exits)
-
-    return room, roomName, description, enemyRoom, exits
 
 # Call this function from main.py to run through creation process
 def munchYaml(fileName):
