@@ -1,3 +1,5 @@
+import random
+
 def pickupItem():
     pass
 
@@ -36,6 +38,17 @@ def viewStats(user1):
 
     return user1
 
+def randomEncounter(user1):
+    # Create a chance of a random encounter occurring
+    encounterChance = random.randint(0, 100)
+
+    if user1.location.enemyRoom:
+        if 0 < encounterChance < 30:
+            print("you find an empty room")
+        elif 30 < encounterChance < 90:
+            print("You find  goblin")
+        else:
+            print("You encounter the king goblin")
 
 def playerMove(playerAction, user1):
     # player movement logic
@@ -43,7 +56,7 @@ def playerMove(playerAction, user1):
         user1.location = user1.location.exits[playerAction]
         print("You go {} and find yourself in a ".format(playerAction) + user1.location.roomName)
         print(user1.location.description)
-        randomEncounter()
+        randomEncounter(user1)
     else:
         print("Unable to move in that direction\n")
 
