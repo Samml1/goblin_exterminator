@@ -13,6 +13,7 @@ class room(object):
         self.roomName = roomName
         self.description = description
         self.enemyRoom = bool()
+        self.items = {}
         self.exits = {}
 
 class item(object):

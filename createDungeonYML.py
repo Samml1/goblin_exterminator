@@ -13,7 +13,7 @@ def yamlReader(fileName):
 
     return data
 
-# Have room exits point to room objects for player movement
+# from room.exits dict transform string values into pointers to objects they represent
 def createExits(roomlist):
     for i in range(0, len(roomList)):
         for j in range(0,len(roomList)):
@@ -22,16 +22,14 @@ def createExits(roomlist):
                     if roomList[i].exits[x] == roomList[j].name:
                         roomList[i].exits[x] = roomList[j]
 
-    for y in range(0, len(roomList)):
-        print(roomList[y].name)
-
 
 # Create the rooms for the dungeon
-def createRoom(roomId, roomName, description, enemyRoom, exits):
+def createRoom(roomId, roomName, description, enemyRoom, exits, items):
     # from provided yaml data create object room
     roomId = room(roomId, roomName, description)
     roomId.enemyRoom = enemyRoom
     roomId.exits = exits
+    roomId.items = items
 
     # create list of rooms to be called on later
     roomList.append(roomId)
@@ -50,8 +48,12 @@ def defineDungeon(data):
         exits = data[i].get('exits', {})
         exits = reduce(lambda union, next_dict: union.update(next_dict) or union, exits, {})
 
+        items = data[i].get('items', {})
+        if items != None:
+            items = reduce(lambda union, next_dict: union.update(next_dict) or union, items, {})
+
         #pass each yaml data entry to function
-        createRoom(room, roomName, description, enemyRoom, exits)
+        createRoom(room, roomName, description, enemyRoom, exits, items)
 
 # Call this function from main.py to run through creation process
 def munchYaml(fileName):

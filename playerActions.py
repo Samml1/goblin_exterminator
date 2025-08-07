@@ -1,6 +1,17 @@
 import random
 
-def pickupItem():
+def pickupItem(itemChoice, user1):
+    '''if itemChoice in user1.location.items:
+        removedItem = user1.location.items.key()
+        removedDescription = user1.location.items.value()
+
+        print(removedItem, removedDescription)
+        user1.location.items.remove(removedItem)
+        createdItem = items()
+    else:
+        print("No item by that name: " + itemChoice)
+
+    return user1'''
     pass
 
 def equipWeapon(user1):
@@ -49,6 +60,7 @@ def randomEncounter(user1):
             print("You find  goblin")
         else:
             print("You encounter the king goblin")
+    return user1
 
 def playerMove(playerAction, user1):
     # player movement logic
@@ -56,6 +68,8 @@ def playerMove(playerAction, user1):
         user1.location = user1.location.exits[playerAction]
         print("You go {} and find yourself in a ".format(playerAction) + user1.location.roomName)
         print(user1.location.description)
+        for key in (user1.location.exits.keys()):
+            print("There is an exit: " + key)
         randomEncounter(user1)
     else:
         print("Unable to move in that direction\n")
