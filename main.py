@@ -1,14 +1,13 @@
-import random
 from createDungeonYML import *
 from initialisePlayer import *
-from playerActions import viewStats, swapWeapon, equipWeapon
+from playerActions import viewStats, swapWeapon, equipWeapon, playerMove, pickupItem
 roomList = []
 startingItems = []
 
 # Create Test player instance if user does not run new game command
 user1 = player("TestPlayer", 'entrance')
 
-def randomEncounter():
+'''def randomEncounter():
     # Create a chance of a random encounter occurring
     encounterChance = random.randint(0, 100)
 
@@ -31,7 +30,7 @@ def playerMove(playerAction):
             print("There is an exit: " + key)
         randomEncounter()
     else:
-        print("Unable to move in that direction\n")
+        print("Unable to move in that direction\n")'''
 
 def dungeonExplore():
 
@@ -47,6 +46,8 @@ def dungeonExplore():
     # Set user to position 0 in roomList - this should be dungeon entrance
     user1.location = roomList[0]
     print("You stand at the entrance to the Dungeon")
+    for key in (user1.location.exits.keys()):
+        print("There is an exit: " + key)
 
     # Loop for player actions in dungeon
     while True:
@@ -57,15 +58,23 @@ def dungeonExplore():
 
         # handle player movement
         if playerAction.lower() in ["north","east","south","west"]:
-            playerMove(playerAction)
+            playerMove(playerAction, user1)
 
         if playerAction == "describe":
             print(user1.location.description)
             for key in (user1.location.exits.keys()):
                 print("There is an exit: " + key)
+            print("Items: ")
+            for key in (user1.location.items.keys()):
+                print("    " + key)
+
 
         if playerAction == "location":
             print(user1.location.roomName)
+
+        if playerAction.lower() == "pickup item":
+            itemPickup = input("What item would you like to pick up?\n")
+            pickupItem(itemPickup, user1)
 
         if playerAction == "exit":
             if user1.location.roomName == "Dungeon Entrance":
